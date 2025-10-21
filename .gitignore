@@ -4,11 +4,14 @@
 *.ap_
 *.aab
 
-# Files for the ART/Dalvik VM
-*.dex
+# Files for the ART runtime
+*.art
 
-# Java class files
+# Compiled class file
 *.class
+
+# Crashlytics configuations
+com_crashlytics_export_strings.xml
 
 # Generated files
 bin/
@@ -18,6 +21,7 @@ out/
 # Gradle files
 .gradle/
 build/
+app/build/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -38,16 +42,15 @@ captures/
 *.iml
 .idea/
 misc.xml
-modules.xml
 *.ipr
+*.iws
 
 # Keystore files
-# Uncomment the following lines if you do not want to check your keystore files in.
-#*.jks
-#*.keystore
+*.jks
+*.keystore
 
 # External native build folder generated in Android Studio 2.2 and later
-.externalNativeBuild
+.externalNativeBuild/
 .cxx/
 
 # Google Services (e.g. APIs or Firebase)
@@ -60,21 +63,23 @@ freeline_project_description.json
 
 # fastlane
 fastlane/report.xml
-fastlane/Preview.html
 fastlane/screenshots
-fastlane/test_output
-fastlane/readme.md
 
 # Version control
-vcs.xml
+.vagrant/
 
-# lint
-lint/intermediates/
-lint/generated/
-lint/outputs/
-lint/tmp/
-lint/report.html
-lint-report.xml
+# Temporary files
+*.tmp
+*.temp
 
-# Android Profiling
-*.hprofgradle/wrapper/gradle-7.5-bin.zip
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/

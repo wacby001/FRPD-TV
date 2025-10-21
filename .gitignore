@@ -77,4 +77,4 @@ lint/report.html
 lint-report.xml
 
 # Android Profiling
-*.hprof
+*.hprofgradle/wrapper/gradle-7.5-bin.zip

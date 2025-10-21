@@ -278,8 +278,15 @@ public class FRPService extends Service {
                 configFile.getAbsolutePath()
             };
             
-            Log.d(TAG, "Executing command: " + String.join(" ", command));
-            addLog("Starting " + currentMode + " with command: " + String.join(" ", command));
+            // 兼容Android 4.4.2的String.join替代方法
+            StringBuilder commandStr = new StringBuilder();
+            for (int i = 0; i < command.length; i++) {
+                if (i > 0) commandStr.append(" ");
+                commandStr.append(command[i]);
+            }
+            
+            Log.d(TAG, "Executing command: " + commandStr.toString());
+            addLog("Starting " + currentMode + " with command: " + commandStr.toString());
             
             frpProcess = Runtime.getRuntime().exec(command);
             

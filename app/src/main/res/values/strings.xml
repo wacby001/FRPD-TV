@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DroidFRPD</string>
-    <string name="leanback_app_name">DroidFRPD</string>
+    <string name="app_name">FRPD-TV</string>
+    <string name="leanback_app_name">FRPD-TV</string>
     <string name="action_save">Save</string>
     <string name="action_close">Close</string>
     <string name="view_logs">View Logs</string>

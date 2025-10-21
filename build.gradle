@@ -1,0 +1,26 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // 假设你使用的是较新的 Android Studio 和 Gradle 版本
+        // 如果你的环境较旧，可能需要使用 com.android.tools.build:gradle:3.5.0 或更低版本
+        classpath 'com.android.tools.build:gradle:7.4.2'
+        
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

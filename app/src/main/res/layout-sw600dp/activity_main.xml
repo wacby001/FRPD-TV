@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DroidFRPD Manager"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Service Status: Stopped"
+        android:textSize="20sp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mode Selection:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp">
+
+        <RadioButton
+            android:id="@+id/client_mode_radio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="FRP Client"
+            android:textSize="18sp"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/server_mode_radio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="FRP Server"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/start_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start FRP Service"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/stop_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stop FRP Service"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/import_config_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Import Configuration File"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/edit_config_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Configuration"
+                android:textSize="18sp"
+                android:layout_marginBottom="12dp"
+                android:minHeight="48dp" />
+                
+            <Button
+                android:id="@+id/view_logs_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="View Logs"
+                android:textSize="18sp"
+                android:layout_marginBottom="24dp"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Auto-start Configuration:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <ToggleButton
+                android:id="@+id/auto_start_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textOn="Auto-start: ON"
+                android:textOff="Auto-start: OFF"
+                android:text="Auto-start"
+                android:textSize="18sp"
+                android:layout_marginBottom="24dp"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Note: Make sure to configure frpc.toml/frps.toml in app's data directory"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

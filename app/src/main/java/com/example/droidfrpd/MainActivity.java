@@ -195,7 +195,12 @@ public class MainActivity extends Activity {
     private void updateServiceStatus() {
         Log.d(TAG, "updateServiceStatus");
         if (isServiceBound && frpService != null) {
-            statusText.setText(frpService.getCurrentMode().toUpperCase() + " Service Running");
+            // 检查服务中的FRP进程是否正在运行
+            if (frpService.isRunning()) {
+                statusText.setText(frpService.getCurrentMode().toUpperCase() + " Service Running");
+            } else {
+                statusText.setText(currentMode.toUpperCase() + " Service Stopped");
+            }
         } else {
             statusText.setText(currentMode.toUpperCase() + " Service Stopped");
         }

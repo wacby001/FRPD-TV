@@ -361,6 +361,10 @@ public class FRPService extends Service {
         return currentMode;
     }
     
+    public boolean isRunning() {
+        return frpProcess != null && frpProcess.isAlive();
+    }
+    
     public ConcurrentLinkedQueue<String> getLogQueue() {
         return logQueue;
     }

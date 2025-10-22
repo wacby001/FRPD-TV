@@ -2,11 +2,14 @@ package com.example.droidfrpd;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,12 +41,32 @@ public class MainActivity extends Activity {
     private ToggleButton autoStartToggle;
     private TextView statusText;
     private FRPService frpService;
+    private boolean isServiceBound = false;
     
     private static final String PREFS_NAME = "FRPPrefs";
     private static final String PREF_AUTO_START = "auto_start";
     private static final String PREF_MODE = "mode";
     
     private String currentMode = "frpc"; // 默认为客户端模式
+    
+    // 服务连接用于检查服务状态
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d(TAG, "Service connected");
+            FRPService.LocalBinder binder = (FRPService.LocalBinder) service;
+            frpService = binder.getService();
+            isServiceBound = true;
+            updateServiceStatus();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.d(TAG, "Service disconnected");
+            isServiceBound = false;
+            frpService = null;
+        }
+    };
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +77,26 @@ public class MainActivity extends Activity {
         initViews();
         setupListeners();
         loadPreferences();
+    }
+    
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
+        // 绑定到服务以检查其状态
+        Intent intent = new Intent(this, FRPService.class);
+        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+    }
+    
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+        // 解绑服务
+        if (isServiceBound) {
+            unbindService(serviceConnection);
+            isServiceBound = false;
+        }
     }
     
     private void initViews() {
@@ -147,6 +190,15 @@ public class MainActivity extends Activity {
                 }
             }
         });
+    }
+    
+    private void updateServiceStatus() {
+        Log.d(TAG, "updateServiceStatus");
+        if (isServiceBound && frpService != null) {
+            statusText.setText(frpService.getCurrentMode().toUpperCase() + " Service Running");
+        } else {
+            statusText.setText(currentMode.toUpperCase() + " Service Stopped");
+        }
     }
     
     private void startFRPService() {
